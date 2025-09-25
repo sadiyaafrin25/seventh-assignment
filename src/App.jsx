@@ -1,4 +1,5 @@
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { Suspense, useEffect, useState } from 'react'
 import './App.css'
 import Card from './Components/Card'
@@ -24,13 +25,15 @@ useEffect(()=>{
     !resolvedTickets.some((t) => t.id === ticket.id)
   ) {
     setSelectedTicket((prev) => [...prev, ticket]);
+    toast.info(`${ticket.title} added to Task Status`);
   }
   };
 
 const handleComplete = (ticket) => {
   setResolvedTickets((prev) => [...prev, ticket]); 
    setSelectedTicket((prev) => prev.filter((t) => t.id !== ticket.id));
- 
+   toast.success(`${ticket.title} successfully completed..`);
+
   };
 
   return (
@@ -52,6 +55,9 @@ const handleComplete = (ticket) => {
 
 </div>
   <Footer></Footer>
+
+ <ToastContainer position="top-right" autoClose={2000} />
+
     </>
   )
 }
