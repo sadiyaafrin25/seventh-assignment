@@ -8,16 +8,18 @@ const Sidebar = ({ selectedTicket, onComplete, resolvedTickets }) => {
      <div className=" bg-gray-50 p-4 text-center">
       {/* Task Status */}
       <h2 className="text-lg font-semibold mb-2">Task Status</h2>
-      {selectedTicket ? (
-        <div className="bg-white p-4 shadow rounded mb-4">
-          <p className="font-medium">{selectedTicket.title}</p>
-          <button
-            className="mt-3 px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700"
-            onClick={() => onComplete(selectedTicket)}
-          >
-            Complete
-          </button>
-        </div>
+{selectedTicket.length > 0 ? (
+  selectedTicket.map((ticket) => (
+    <div key={ticket.id} className="bg-white p-4 shadow rounded mb-4">
+      <p className="font-medium">{ticket.title}</p>
+      <button
+        className="mt-3 px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700"
+        onClick={() => onComplete(ticket)}
+      >
+        Complete
+      </button>
+    </div>
+  ))
       ) : (
         <p className="text-sm text-gray-500">
           Select a ticket to view task status

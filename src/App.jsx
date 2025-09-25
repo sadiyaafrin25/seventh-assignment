@@ -9,8 +9,9 @@ import Sidebar from './Components/Sidebar'
 
 function App() {
 const [tickets, setTickets]= useState([]);
-const[selectedTicket, setSelectedTicket]=useState([null])
+const[selectedTicket, setSelectedTicket]=useState([])
 const[resolvedTickets, setResolvedTickets]= useState([])
+ 
 
 useEffect(()=>{
   fetch("/data.json").then((res)=> res.json()).then((data)=>setTickets(data))
@@ -18,24 +19,27 @@ useEffect(()=>{
 }, [])
 
  const handleSelectTicket = (ticket) => {
-    setSelectedTicket(ticket);
+   if (
+    !selectedTicket.some((t) => t.id === ticket.id) &&
+    !resolvedTickets.some((t) => t.id === ticket.id)
+  ) {
+    setSelectedTicket((prev) => [...prev, ticket]);
+  }
   };
 
- const handleComplete = (ticketId) => {
-    const ticket = tickets.find((t) => t.id === ticketId);
-    if (ticket) {
-      setResolvedTickets((prev) => [...prev, ticket.id]);
-      setResolvedTickets((prev) => [...prev, ticket.title]);
-      setSelectedTicket(null);
-    }
+const handleComplete = (ticket) => {
+  setResolvedTickets((prev) => [...prev, ticket]); 
+   setSelectedTicket((prev) => prev.filter((t) => t.id !== ticket.id));
+ 
   };
 
   return (
     <>
 
   <Navbar></Navbar>
-{/* 
-<Countcard></Countcard> */}
+
+<Countcard inProgress={tickets.filter(t => !resolvedTickets.some(r => r.id === t.id))}
+  resolved={resolvedTickets}></Countcard>
 
 <div className=' flex justify-between'>
 
