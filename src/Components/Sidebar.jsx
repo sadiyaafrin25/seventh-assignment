@@ -3,9 +3,10 @@ import Container from "./Container";
 
 const Sidebar = ({ selectedTicket, onComplete, resolvedTickets }) => {
     return (
-        <div className='w-1/3'>
+      <div className='w-1/3'>  
    <Container>
-     <div className=" bg-gray-50 p-4 text-center">
+    
+     <div className=" bg-gray-50 rounded-lg p-4 text-center">
       {/* Task Status */}
       <h2 className="text-lg font-semibold mb-2">Task Status</h2>
 {selectedTicket.length > 0 ? (
@@ -43,8 +44,9 @@ const Sidebar = ({ selectedTicket, onComplete, resolvedTickets }) => {
         <p className="text-sm text-gray-500">No tasks resolved yet</p>
       )}
     </div>
+  
    </Container>
-        </div>
+      </div>
     );
 };
 

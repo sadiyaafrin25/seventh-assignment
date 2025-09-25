@@ -33,11 +33,10 @@ const Card = ({ tickets, onCardClick, resolvedTickets }) => {
 
 
     return (
-        <div className="w-2/3">
-        <Container>
-        
-           <h2 className="text-xl font-semibold my-5">Customer Tickets</h2>
-           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div className="w-2/3"> 
+       <Container>
+           <h2 className="text-xl font-semibold mb-5 pl-4">Customer Tickets</h2>
+           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
       {tickets.map((ticket) => {
         const isResolved = resolvedTickets.includes(ticket.id);
         return (
@@ -64,6 +63,7 @@ const Card = ({ tickets, onCardClick, resolvedTickets }) => {
         );
       })}
         </div>
+        
         </Container>
         </div>
     );

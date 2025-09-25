@@ -44,7 +44,7 @@ const handleComplete = (ticket) => {
 <Countcard inProgress={tickets.filter(t => !resolvedTickets.some(r => r.id === t.id))}
   resolved={resolvedTickets}></Countcard>
 
-<div className=' flex justify-between'>
+<div className=' p-5 flex gap-4'>
 
 <Suspense fallback={<p> loading all elements......</p>}>
   <Card tickets={tickets} onCardClick={handleSelectTicket} resolvedTickets={resolvedTickets}> </Card>
